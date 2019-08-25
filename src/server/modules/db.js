@@ -71,6 +71,9 @@ const connect = () => {
      return this.db.collection(collection).removeOne(search)
  }
 
+ const updateOne = (collection, select, data) => {
+     return this.db.collection(collection).updateOne(select, {$set: data})
+ }
 
 /**
  * Exports
@@ -83,3 +86,4 @@ exports.findOne = findOne
 exports.findAll = findAll
 exports.insertOne = insertOne
 exports.removeOne = removeOne
+exports.updateOne = updateOne

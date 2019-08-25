@@ -24,6 +24,11 @@ router.post('/', (req,res,next) => {
     })
 })
 
+router.post('/:id', (req,res,next) => {
+    clientDb.updateOne('tasks', {_id: new clientDb.ObjectID(req.params.id)}, {content: req.body.content}).then(result => {
+        res.status(200).send({message:'Task update'})
+    })
+})
 
 // remove tast
 router.delete('/:id', (req, res, next) => {
@@ -32,6 +37,8 @@ router.delete('/:id', (req, res, next) => {
         res.status(200).send({message:'Task deleted'})
     })
 })
+
+
 
 
 module.exports = router
