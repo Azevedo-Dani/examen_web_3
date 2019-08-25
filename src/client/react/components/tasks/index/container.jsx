@@ -1,6 +1,7 @@
 import React from "react";
 import Component from "./component.jsx"
 import sendApiRequest from '../../../utils/api'
+import service from '../../../services/tasks'
 class Container extends React.Component {
     constructor(props) {
         super(props)
@@ -11,7 +12,7 @@ class Container extends React.Component {
     }
 
     getAllTasks() {
-        sendApiRequest({url: '/tasks'}).then(tasks => {
+        service.retrieveAll().then(tasks => {
             this.setState({
                 tasks: tasks
             })
@@ -21,10 +22,7 @@ class Container extends React.Component {
         this.getAllTasks()
     }
     deleteTask(id) {
-        sendApiRequest({
-            url: '/tasks/' + id,
-            method: 'DELETE'
-        }).then(resp => {
+        service.destroy(id).then(resp => {
             this.getAllTasks()
         })
     }

@@ -9,6 +9,9 @@ const clientDb = require('./db')
 const authMiddleware = (req, res, next) => {
     const authentified = req.get('X-AUTHENTIFIED')
     const promise = new Promise( (resolve, reject) => {
+        console.log(authentified == true)
+        console.log(authentified === true)
+
         if (authentified && authentified !== "false") {
             clientDb.findOne('users', {}).then(result => {
                 req.user = result

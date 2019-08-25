@@ -1,7 +1,7 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom';
 import NewTaskComponent from './newTaskComponent'
 import sendApiRequest from '../../../utils/api'
+import service from '../../../services/tasks'
 class NewTaskContainer extends React.Component {
     constructor(props) {
         super(props)
@@ -21,13 +21,8 @@ class NewTaskContainer extends React.Component {
     }
 
     addTask() {
-        sendApiRequest({
-            url: '/tasks',
-            method: 'POST',
-            params: {
-                content: this.state.task
-            }
-        }).then(resp => {
+        service.create({label: this.state.task})
+        .then(resp => {
             console.log(resp)
             this.props.history.push('/tasks')
         })
@@ -42,4 +37,4 @@ class NewTaskContainer extends React.Component {
 }
 
 
-export default withRouter(NewTaskContainer)
+export default NewTaskContainer

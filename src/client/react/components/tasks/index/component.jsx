@@ -3,8 +3,7 @@ import {Container, Row, Col, ListGroup, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 const Component = ({
     tasks, deleteTask
-})=>{
-    return (
+})=>
         <Container>
             <Row>
                 <Col xs={8}>
@@ -29,7 +28,6 @@ const Component = ({
             </Row>
         </Container>
         
-    )
-}
+   
 
 export default Component;
